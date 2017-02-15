@@ -44,12 +44,10 @@ public class BinarySearch {
                         break;
                     }
                     brut++;
-                    Magic.counter++;
                 }
                 break;
             }
             iter = iter + base;
-            Magic.counter++;
         }
         return result;
     }

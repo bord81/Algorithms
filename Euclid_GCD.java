@@ -8,7 +8,6 @@ public class Euclid_GCD {
     }
 
     public static int euclidBase(int a, int b) {
-        int cycles = 0;
         if (a == 0) {
             return b;
         } else if (b == 0) {
@@ -29,7 +28,6 @@ public class Euclid_GCD {
             swap_b = a;
         }
         while (true) {
-            cycles++;
             div = swap_a / swap_b;
             rem = swap_a % swap_b;
             if (rem == 0) {

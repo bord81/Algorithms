@@ -1,3 +1,5 @@
+SICP - exercises from SICP 2nd edition
+
 Armstrong.java - finding Armstrong numbers
 
 BinarySearch.java - sorted array search algorithm example (based on Integer array)

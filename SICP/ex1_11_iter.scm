@@ -1,0 +1,6 @@
+(define (some-func n)
+    (some-func-iter 2 1 0 n))
+(define (some-func-iter a b c count)
+    (cond ((and (< a 3) (< count 3)) count)
+          ((< count 3) a)
+        (else (some-func-iter (+ a (* 2 b) (* 3 c)) a b (- count 1)))))

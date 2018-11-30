@@ -13,5 +13,3 @@
         0
         (+ (term a) 
             (sum term (next a) next b))))
-(define (cube x)
-    (* x x x))

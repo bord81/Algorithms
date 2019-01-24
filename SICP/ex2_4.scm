@@ -1,8 +1,8 @@
-(define (cons-e x y) 
+(define (cons x y) 
     (lambda (m) (m x y)))
 
-(define (car-e z)
+(define (car z)
     (z (lambda (p q) p)))
 
-(define (cdr-e z)
+(define (cdr z)
     (z (lambda (p q) q)))

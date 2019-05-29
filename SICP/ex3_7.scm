@@ -1,0 +1,38 @@
+#lang racket
+
+(define (make-account balance pwd)
+  (let ((acc-lis pwd))
+    (cond ((not (list? acc-lis)) (set! acc-lis (list acc-lis))))
+    (define (withdraw amount)
+      (if (>= balance amount)
+          (begin (set! balance (- balance amount))
+                 balance)
+          "Insufficient funds"))
+    (define (deposit amount)
+      (set! balance (+ balance amount))
+      balance)
+    (define (add-new-pass n-pass)
+      (make-account balance (append acc-lis (list n-pass))))
+    (define (dispatch p m)
+      (let loop ((pwds acc-lis))
+        (cond ((null? pwds) (error "Incorrect password"))
+              ((eq? p (car pwds))
+               (cond ((eq? m 'withdraw) withdraw)
+                     ((eq? m 'deposit) deposit)
+                     ((eq? m 'nEw_PaSs) add-new-pass)
+                     (else (error "Unknown request: MAKE-ACCOUNT"
+                                  m))))
+              (else (loop (cdr pwds))))))
+    dispatch))
+
+(define (make-joint account orig-pass add-pass)
+  ((account orig-pass 'nEw_PaSs) add-pass))
+
+(define acc (make-account 100 'secret-password))
+((acc 'secret-password 'withdraw) 40)
+;((acc 'some-other-password 'deposit) 50)
+
+(define peter-acc (make-account 200 'open-sesame))
+((peter-acc 'open-sesame 'withdraw) 40)
+(define paul-acc (make-joint peter-acc 'open-sesame 'rosebud))
+((paul-acc 'open-sesame 'withdraw) 40)
